@@ -11,6 +11,9 @@ pub enum NewsEnum{
     CBC,
     GlobalNews,
 }
+
+
+
 /// ## NewsSite
 /// This struct is used to get the a NewsSite for an associated
 /// news company.

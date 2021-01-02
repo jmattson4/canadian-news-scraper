@@ -17,13 +17,13 @@ from at the moment three canadian news sites.
 ## Explanation
 
 The library api is fairly simple it works by providing the 
-scrape() function - which is located in the scraper module - a NewsEnum that it then uses to scrape the site associated
+scrape() function - which is located in the scraper module - which takes a NewsEnum that it then uses to scrape the site associated
 to that Enum. 
 
 ```
 pub async fn scrape(news: NewsEnum) -> Vec<News>
 ```
-scrape() uses a series of functions located in the scraper module to determine which functions it needs to use to effectively scrape the website you've requested.
+scrape() uses a series of functions located in the scraper module to determine which News Site markup it needs to use to effectively scrape the website you've requested.
 
 
 ## Data Structure

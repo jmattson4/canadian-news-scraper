@@ -31,6 +31,7 @@ pub async fn scrape(news: NewsEnum) -> Vec<News> {
 
     news_scrape
 }
+// pub async fn scrape_all() -> (Vec<News>, Vec<News>, Vec<>)
 /// ## get_document
 /// 
 /// This function is used to return an html Document from
@@ -59,7 +60,6 @@ pub async fn get_document(url: &String) -> select::document::Document {
     };
 
     read_result
-
 }
 
 
