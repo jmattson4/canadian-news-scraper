@@ -1,5 +1,5 @@
 [package]
-name = "news_scraper"
+name = "canadian_news_scraper"
 version = "0.1.0"
 authors = ["jmattson4 <jacemattson@gmail.com>"]
 edition = "2018"
