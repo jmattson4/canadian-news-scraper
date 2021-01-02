@@ -2,13 +2,17 @@ use chrono::{
     DateTime,
     Utc,
 };
-
+/// ## NewsEnum
+/// A Enum which can be used to select a NewsSite to scrape.
 #[derive(Clone, Debug)]
 pub enum NewsEnum{
     CTV,
     CBC,
     GlobalNews,
 }
+/// ## NewsSite
+/// This struct is used to get the a NewsSite for an associated
+/// news company.
 #[non_exhaustive]
 pub struct NewsSite;
 
@@ -21,7 +25,9 @@ impl NewsSite {
         }
     }
 }
-
+/// ## News
+/// Main data structure of the program that pulled information
+/// is placed.
 #[derive(Clone, Debug)]
 pub struct News {
     pub news_enum: NewsEnum,

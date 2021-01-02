@@ -5,9 +5,7 @@ mod news;
 /// # Scraper
 /// This module holds all related scraper
 /// modules and logic.
-/// 
 mod scraper;
-mod errors;
 
 
 #[cfg(test)]

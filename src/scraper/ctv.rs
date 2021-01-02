@@ -3,7 +3,9 @@ use select::predicate::{Class, Name};
 use crate::news::{NewsEnum, News};
 use crate::scraper;
 
-#[allow(dead_code)]
+/// ## scrape_ctv
+/// This function is the ctv implementation for the initial
+/// scrape.
 pub async fn scrape_ctv(doc: Document, ctv: &NewsEnum) -> Vec<News> {
     let mut news_vec: Vec<News> = Vec::new();
     let top_twelve = doc
@@ -110,12 +112,15 @@ pub async fn scrape_article(doc: Document) -> (String, String, String, String) {
     let text = doc.find(Class("articleBody")).next();
     let mut article_text: String = String::from("");
     if let Some(val) = text {
+        //for each element P inside of the article body
+        // push the trimmed text value onto article_text
         for x in val.find(Name("p")) {
             article_text.push_str(&x.text().trim_start());
         }
     } else {
         article_text = String::from("No - Article Text")
     }
-
+    //respond with a tuple which can then be parsed by 
+    // the News struct.
     (meta_data, author_name, publish_date, article_text)
 }
