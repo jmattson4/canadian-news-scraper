@@ -1,6 +1,8 @@
 [package]
 name = "canadian_news_scraper"
 version = "0.1.0"
+description = "A library that provides an api which scrapes 3 Canadian News Sites and returns the data."
+license = "MIT"
 authors = ["jmattson4 <jacemattson@gmail.com>"]
 edition = "2018"
 
