@@ -12,7 +12,36 @@ pub enum NewsEnum{
     GlobalNews,
 }
 
+#[derive(Clone, Debug)]
+pub struct AllNews {
+    ctv: Vec<News>,
+    cbc: Vec<News>,
+    global: Vec<News>,
+}
 
+#[allow(dead_code)]
+impl AllNews {
+    pub fn new(    
+        ctv: Vec<News>,
+        cbc: Vec<News>,
+        global: Vec<News>
+    ) -> AllNews{
+        AllNews {
+            ctv: ctv,
+            cbc: cbc,
+            global: global
+        }
+    }
+    pub fn get_ctv(&self) -> &Vec<News> {
+        &self.ctv
+    }
+    pub fn get_cbc(&self) -> &Vec<News> {
+        &self.cbc
+    }
+    pub fn get_global(&self) -> &Vec<News> {
+        &self.global
+    }
+}
 
 /// ## NewsSite
 /// This struct is used to get the a NewsSite for an associated
