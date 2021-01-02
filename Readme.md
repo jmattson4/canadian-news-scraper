@@ -27,10 +27,10 @@ scrape() uses a series of functions located in the scraper module to determine w
 
 
 ## Data Structure
-The underlying data structure that scraper() returns is a Vector of type News. News is a struct which is defined in the 
+The underlying data structure that scrape() returns is a Vector of type News. News is a struct which is defined in the 
 News module alongside NewsEnum and NewsSite.
 
-```
+``` rs
 pub struct News {
     pub news_enum: NewsEnum,
     pub news_site: String,
@@ -49,3 +49,14 @@ pub struct News {
 The main use case of this program is in a REST API I'm creating which will be used to scrape these sites on a daily
 basis and store the information in a database which can then be accessed via the REST application.
 
+## Example 
+
+``` rs
+
+let news_site = news::NewsEnum::GlobalNews;
+let val:Vec<News> = scraper::scrape(news_site);
+
+
+```
+
+You can see similiar examples in the tests module located in lib.rs.

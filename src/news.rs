@@ -5,6 +5,7 @@ use chrono::{
 /// ## NewsEnum
 /// A Enum which can be used to select a NewsSite to scrape.
 #[derive(Clone, Debug)]
+#[allow(dead_code)]
 pub enum NewsEnum{
     CTV,
     CBC,

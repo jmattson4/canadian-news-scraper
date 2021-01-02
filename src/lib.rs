@@ -7,27 +7,29 @@ mod news;
 /// modules and logic.
 mod scraper;
 
+use scraper::scrape;
+use news::{NewsEnum, News};
+
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn cbc_scrape() {
-        let news_site = news::NewsEnum::CBC;
-        let val = scraper::scrape(news_site);
+        let news_site = NewsEnum::CBC;
+        let val = scrape(news_site);
         assert_eq!(val.len(), 4);
     }
     #[test]
     fn ctv_scrape() {
-        let news_site = news::NewsEnum::CTV;
-        let val = scraper::scrape(news_site);
+        let news_site = NewsEnum::CTV;
+        let val = scrape(news_site);
         assert_eq!(val.len(), 12);
     }
     #[test]
     fn global_news_scrape() {
-        let news_site = news::NewsEnum::GlobalNews;
-        let val = scraper::scrape(news_site);
+        let news_site = NewsEnum::GlobalNews;
+        let val = scrape(news_site);
         assert_eq!(val.len(), 12);
     }    
 }
