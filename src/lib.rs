@@ -7,8 +7,8 @@ mod news;
 /// modules and logic.
 mod scraper;
 
-use scraper::{scrape, scrape_all};
-use news::{NewsEnum, News};
+pub use scraper::{scrape, scrape_all};
+pub use news::{NewsEnum, News};
 
 
 #[cfg(test)]
