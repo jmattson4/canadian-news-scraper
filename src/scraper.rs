@@ -2,7 +2,7 @@ use reqwest;
 use tokio;
 use select::document::Document;
 
-use crate::news::{NewsEnum, NewsSite, News};
+use crate::news::{NewsEnum, NewsSite, News, AllNews};
 
 /// # cbc
 /// This module holds scraping logic related to cbc_news.
@@ -28,10 +28,37 @@ pub async fn scrape(news: NewsEnum) -> Vec<News> {
     let news_scrape = choose_initial_scrape(&news, doc).await;
     let news_scrape = scrape_articles(&news, news_scrape).await;
 
-
     news_scrape
 }
-// pub async fn scrape_all() -> (Vec<News>, Vec<News>, Vec<>)
+/// ## scrape_all()
+/// This function returns an AllNews struct which hold 
+/// Vectors with all the pulled news information.
+/// Its useful for when you want to get everything all at once.
+/// 
+#[tokio::main]
+pub async fn scrape_all() -> AllNews {
+    let cbc = NewsEnum::CBC;
+    let global = NewsEnum::GlobalNews;
+    let ctv = NewsEnum::CTV;
+
+    let cbc_site = NewsSite::get_site(&cbc);
+    let ctv_site = NewsSite::get_site(&ctv);
+    let global_site = NewsSite::get_site(&global);
+
+    let cbc_doc = get_document(&cbc_site).await;
+    let ctv_doc = get_document(&ctv_site).await;
+    let global_doc = get_document(&global_site).await;
+
+    let cbc_scrape = choose_initial_scrape(&cbc, cbc_doc).await;
+    let ctv_scrape = choose_initial_scrape(&ctv, ctv_doc).await;
+    let global_scrape = choose_initial_scrape(&global, global_doc).await;
+
+    let cbc_scrape = scrape_articles(&cbc, cbc_scrape).await;
+    let ctv_scrape = scrape_articles(&cbc, ctv_scrape).await;
+    let global_scrape = scrape_articles(&cbc, global_scrape).await;
+
+    AllNews::new(ctv_scrape, cbc_scrape, global_scrape)
+}
 /// ## get_document
 /// 
 /// This function is used to return an html Document from
