@@ -1,4 +1,5 @@
 use reqwest;
+#[cfg(feature = "tokio")]
 use tokio;
 use select::document::Document;
 
