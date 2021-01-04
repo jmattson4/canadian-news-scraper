@@ -11,7 +11,15 @@ pub enum NewsEnum{
     CBC,
     GlobalNews,
 }
-
+impl NewsEnum {
+    pub fn to_int(x: NewsEnum) -> i8 {
+        match x {
+            NewsEnum::CBC => 1,
+            NewsEnum::CTV => 2,
+            NewsEnum::GlobalNews => 3,
+        }
+    }
+}
 #[derive(Clone, Debug)]
 pub struct AllNews {
     ctv: Vec<News>,
