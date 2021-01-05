@@ -47,7 +47,7 @@ pub async fn scrape_global_news(doc: Document, global: &NewsEnum) -> Vec<News> {
         } else {
             meta_text = String::from("No - Metadata");
         }
-        let meta_text = clean_metadata_string(meta_text);
+        let meta_text = clean_string(meta_text);
         if article_link != String::from("No - Article Link"){
             let news = News::new(
                 global.clone(), 
@@ -80,7 +80,7 @@ async fn scrape_article(doc: Document) -> (String, String, String, String) {
     let auth = doc.find(Class("c-byline__attribution")).next();
     let author: String;
     if let Some(val) = auth {
-        author = String::from(val.text().trim());
+        author = clean_string(String::from(val.text().trim()));
     } else {
         author = String::from("No - Author");
     }
@@ -90,7 +90,7 @@ async fn scrape_article(doc: Document) -> (String, String, String, String) {
     let mut article_text: String = String::from("");
     if let Some(val) = text {
         for x in val.find(Name("p")) {
-            article_text.push_str(&x.text().trim_start());
+            article_text.push_str(&clean_string(x.text().trim_start().to_string()));
         }
     } else {
         article_text = String::from("No - Article Text")
@@ -105,8 +105,10 @@ async fn scrape_article(doc: Document) -> (String, String, String, String) {
         date = String::from("No - Date");
     }
     let date = clean_date_string(date);
-    //println!("{}", author);
-    println!("{}", date);
+
+    println!("{}", author);
+    println!("{}", article_text);
+
     ( author, article_text, date, String::from("") )
 }
 
@@ -138,7 +140,7 @@ fn clean_date_string(s: String) -> String {
 /// that is pulled off the site a little bit
 /// it could still probably use some work to make it look
 /// cleaner
-fn clean_metadata_string(s: String) -> String{
+fn clean_string(s: String) -> String{
     let mut str_vec: Vec<char> = s.chars().collect();
     //go through the char vector and only retain values
     // which dont jave \t char
