@@ -55,8 +55,8 @@ pub async fn scrape_all() -> AllNews {
     let global_scrape = choose_initial_scrape(&global, global_doc).await;
 
     let cbc_scrape = scrape_articles(&cbc, cbc_scrape).await;
-    let ctv_scrape = scrape_articles(&cbc, ctv_scrape).await;
-    let global_scrape = scrape_articles(&cbc, global_scrape).await;
+    let ctv_scrape = scrape_articles(&ctv, ctv_scrape).await;
+    let global_scrape = scrape_articles(&global, global_scrape).await;
 
     AllNews::new(ctv_scrape, cbc_scrape, global_scrape)
 } 
