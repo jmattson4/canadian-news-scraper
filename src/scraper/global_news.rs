@@ -106,9 +106,6 @@ async fn scrape_article(doc: Document) -> (String, String, String, String) {
     }
     let date = clean_date_string(date);
 
-    println!("{}", author);
-    println!("{}", article_text);
-
     ( author, article_text, date, String::from("") )
 }
 
